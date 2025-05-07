@@ -7,6 +7,10 @@ export type PostMeta = {
   title: string;
   date: string;
   excerpt: string;
+  category?: string;
+  tags?: string[];
+  author?: string;
+  usepic?: string;
 };
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
@@ -25,6 +29,10 @@ export function getAllPosts(): PostMeta[] {
         title: data.title || slug,
         date: data.date || '',
         excerpt: data.excerpt || '',
+        category: data.category || '',
+        tags: data.tags || [],
+        author: data.author || '',
+        usepic: data.usepic || '',
       };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -40,6 +48,10 @@ export function getPostBySlug(slug: string) {
       title: data.title || slug,
       date: data.date || '',
       excerpt: data.excerpt || '',
+      category: data.category || '',
+      tags: data.tags || [],
+      author: data.author || '',
+      usepic: data.usepic || '',
     },
     content,
   };

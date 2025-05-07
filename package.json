@@ -9,12 +9,17 @@
     "add-post": "node add-post.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
     "@next/mdx": "^15.3.2",
+    "avvvatars-react": "^0.4.2",
     "gray-matter": "4.0.3",
     "next": "^15.3.2",
     "next-mdx-remote": "^5.0.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@types/node": "22.15.14",

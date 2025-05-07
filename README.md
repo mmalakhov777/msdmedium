@@ -1,4 +1,4 @@
-# My Medium Clone
+# ArtGptAgents
 
 A minimalist, SEO-optimized blog platform using Next.js, MDX, and Vercel Deploy Hooks.
 

@@ -7,16 +7,11 @@ export default function Home({ posts }: { posts: PostMeta[] }) {
   return (
     <>
       <Head>
-        <title>My Medium Clone - Articles</title>
+        <title>ArtGptAgents - Articles</title>
         <meta name="description" content="A collection of articles on various topics." />
       </Head>
       <main style={{ maxWidth: 700, margin: '40px auto', padding: '0 20px', fontFamily: 'var(--font-sans, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif)' }}>
-        <header style={{ marginBottom: 60, textAlign: 'center' }}>
-          <h1 style={{ fontWeight: 700, fontSize: '2.8rem', marginBottom: 8, color: '#1a1a1a' }}>
-            My Medium Clone
-          </h1>
-          <p style={{ fontSize: '1.1rem', color: '#666' }}>Welcome to my collection of thoughts and stories.</p>
-        </header>
+        
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {posts.map(post => (
             <li key={post.slug} style={{ marginBottom: 50, borderBottom: '1px solid #eee', paddingBottom: 30 }}>
