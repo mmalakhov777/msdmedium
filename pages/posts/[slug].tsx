@@ -5,12 +5,24 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Avvvatars from 'avvvatars-react';
 import { FaRegHandPaper, FaRegComment, FaRegBookmark, FaRegPlayCircle, FaShareAlt } from 'react-icons/fa';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tooltip } from '@mui/material';
 
 export default function PostPage({ meta, mdxSource }: { meta: PostMeta, mdxSource: MDXRemoteSerializeResult }) {
   const [claps, setClaps] = useState(1100);
   const handleComingSoon = () => alert('Coming soon');
+
+  // Overlay CTA state
+  const [showCta, setShowCta] = useState(false);
+  const [ctaClosed, setCtaClosed] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowCta(window.scrollY > 120);
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <>
@@ -80,6 +92,87 @@ export default function PostPage({ meta, mdxSource }: { meta: PostMeta, mdxSourc
           <MDXRemote {...mdxSource} />
         </article>
       </main>
+      {/* Overlay CTA */}
+      {showCta && !ctaClosed && (
+        <div
+          style={{
+            position: 'fixed',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 2000,
+            background: 'linear-gradient(90deg, #fff 80%, #e0e7ff 100%)',
+            padding: '36px 0',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            transition: 'all 0.3s',
+            borderTop: '1.5px solid #e5e7eb',
+          }}
+        >
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            background: '#fff',
+            borderRadius: 18,
+            padding: '32px 48px',
+            maxWidth: 700,
+            width: '90%',
+            position: 'relative',
+            flexDirection: 'column',
+            gap: 18,
+          }}>
+            <div style={{ fontWeight: 800, fontSize: 32, marginBottom: 4, color: '#1a1a1a', textAlign: 'center' }}>
+              Let AI Agents create your job!
+            </div>
+            <div style={{ fontSize: 20, color: '#444', marginBottom: 12, textAlign: 'center' }}>
+              Get early access to our AI-powered job creation platform.
+            </div>
+            <button
+              style={{
+                background: '#232323',
+                color: '#FFF',
+                border: 'none',
+                borderRadius: 100,
+                padding: '12px 32px',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 16,
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: '24px',
+                textAlign: 'center',
+                marginBottom: 10,
+                cursor: 'pointer',
+                transition: 'background 0.2s',
+                letterSpacing: '-0.5px',
+              }}
+              onClick={() => alert('Coming soon!')}
+            >
+              Get Instant Help
+            </button>
+            <button
+              onClick={() => setCtaClosed(true)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#666',
+                fontSize: 15,
+                fontWeight: 400,
+                cursor: 'pointer',
+                textDecoration: 'none',
+                marginTop: 10,
+                alignSelf: 'center',
+                transition: 'color 0.2s',
+              }}
+              onMouseOver={e => (e.currentTarget.style.textDecoration = 'underline')}
+              onMouseOut={e => (e.currentTarget.style.textDecoration = 'none')}
+              aria-label="Continue Reading"
+            >
+              Continue reading
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

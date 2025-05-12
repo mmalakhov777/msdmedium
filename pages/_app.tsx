@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <footer style={{ width: '100%', background: '#fafafa', borderTop: '1px solid #eee', padding: '24px 0', marginTop: 48, textAlign: 'center', color: '#888', fontSize: 15 }}>
           © {new Date().getFullYear()} ArtGptAgents. All rights reserved.
         </footer>
+        <Analytics />
       </div>
     </>
   );
