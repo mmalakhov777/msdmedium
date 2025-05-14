@@ -1,36 +1,69 @@
-# ArtGptAgents
+# MSD Medium Clone
 
-A minimalist, SEO-optimized blog platform using Next.js, MDX, and Vercel Deploy Hooks.
+A customizable Medium-style blogging platform with category-specific branding and deployments.
 
 ## Features
-- Minimalist Medium-style UI
-- Posts as MDX files for easy programmatic creation
-- SEO meta tags per page
-- Script to add new posts and trigger Vercel deploy hook
 
-## Getting Started
+- Separate deployments for each category
+- Category-specific branding (logos, colors)
+- Automated deployment process
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+## Development
 
-2. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
+### Running locally with all categories
 
-3. **Add a new post:**
-   ```bash
-   npm run add-post -- "My New Post Title"
-   ```
-   This will create a new MDX file in `content/posts/` and trigger a Vercel deploy (if configured).
+```bash
+npm run dev
+```
 
-4. **Configure Vercel Deploy Hook:**
-   - Set your deploy hook URL in `.env.local` as `VERCEL_DEPLOY_HOOK_URL`.
+### Running locally with a specific category
 
-## Deploying
-Deploy to [Vercel](https://vercel.com/) for best results.
+```bash
+npm run dev:category
+# Then select a category from the list
+```
+
+## Deployment
+
+Each category is deployed as a separate website with its own branding.
+
+### Deploying a specific category
+
+```bash
+npm run deploy:category
+# Then select a category from the list
+```
+
+The deployment script will:
+1. Create a category-specific deployment folder if it doesn't exist
+2. Copy only the selected category's posts
+3. Set up environment variables for the category
+4. Deploy to Vercel with category-specific branding
+
+## Structure
+
+- `content/posts/`: Contains category folders with blog posts
+- `icons/`: Contains the base and category-specific logos
+- `scripts/`: Deployment and development utilities
+
+## Customization
+
+To add a new category:
+1. Create a folder in `content/posts/` with the category name
+2. Add `.mdx` files for your posts
+3. Create a logo component in `icons/Logo[CategoryName].tsx`
+4. Add the category to the switch statement in `icons/DynamicLogo.tsx`
+5. Add category-specific configuration in `lib/categoryConfig.ts`
+
+Each category can have the following customizations:
+- Custom logo
+- Accent color
+- Site name
+- Tagline
+- Button color
+- Button text color
+
+These customizations are applied automatically when you run or deploy with a specific category.
 
 # MSDMedium Monorepo Structure
 

@@ -19,12 +19,119 @@ a {
 .post-content h1,
 .post-content h2,
 .post-content h3 {
-  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--Monochrome-Black, #232323);
+  font-family: 'Aeonik Pro', Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .post-content p {
-  line-height: 1.7;
+  line-height: 1.4;
   font-size: 1.125rem; /* 18px */
-  margin-bottom: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.post-content p + p {
+  margin-top: 0.75em;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 1rem;
+}
+
+.post-content th, .post-content td {
+  border: 1px solid #e0e0e0;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.post-content th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.post-content tr:nth-child(even) {
+  background: #fcfcfc;
+}
+
+.post-content pre, 
+.post-content code {
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #444;
+  background: #f8f8f8;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  box-shadow: none;
+  margin: 16px 0;
+  line-height: 2.2;
+  word-break: break-word;
+  white-space: pre-line;
+}
+
+.post-content pre {
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+}
+
+.post-content a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'Aeonik Pro';
+  src: url('https://mystylus.ai/fonts/Aeonik/Aeonik-Woff/Aeonik-Pro-Desktop/aeonikpro-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aeonik Pro';
+  src: url('https://mystylus.ai/fonts/Aeonik/Aeonik-Woff/Aeonik-Pro-Desktop/aeonikpro-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Orbikular';
+  src: url('https://mystylus.ai/fonts/Orbicular/woff2/Orbikular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Orbikular';
+  src: url('https://mystylus.ai/fonts/Orbicular/woff2/Orbikular-Variable-Italic-VF.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+.post-content {
+  color: var(--Monochrome-Black, #232323);
+  font-family: 'Aeonik Pro', Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.post-content h1 {
+  color: #000;
+  font-family: 'Orbikular Variable', Arial, sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 56px;
+  margin-top: 0;
+  margin-bottom: 0;
 } 

@@ -11,6 +11,7 @@ export type PostMeta = {
   tags?: string[];
   author?: string;
   usepic?: string;
+  image?: string;
 };
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
@@ -45,6 +46,7 @@ export function getAllPosts(): PostMeta[] {
         tags: data.tags || [],
         author: data.author || '',
         usepic: data.usepic || '',
+        image: data.image || '',
       };
     });
   const filterCategory = process.env.CATEGORY;
@@ -78,6 +80,7 @@ export function getPostBySlug(category: string, slug: string) {
       tags: data.tags || [],
       author: data.author || '',
       usepic: data.usepic || '',
+      image: data.image || '',
     },
     content: contentWithoutTitle,
   };
