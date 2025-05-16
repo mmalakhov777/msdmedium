@@ -12,9 +12,23 @@ export type PostMeta = {
   author?: string;
   usepic?: string;
   image?: string;
+  scenarioId?: string;
 };
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
+
+// Debug: log the contents of the business category directory
+try {
+  const businessDir = path.join(postsDirectory, 'business');
+  if (fs.existsSync(businessDir)) {
+    const businessFiles = fs.readdirSync(businessDir);
+    console.log(`[DEPLOY LOG] Files in content/posts/business:`, businessFiles);
+  } else {
+    console.log(`[DEPLOY LOG] Directory content/posts/business does not exist at build time.`);
+  }
+} catch (e) {
+  console.log(`[DEPLOY LOG] Error reading content/posts/business:`, e);
+}
 
 // Recursively get all .mdx files in category folders
 function getAllPostFiles(dir = postsDirectory, category = ''): { file: string; category: string }[] {
@@ -32,6 +46,7 @@ function getAllPostFiles(dir = postsDirectory, category = ''): { file: string; c
 
 export function getAllPosts(): PostMeta[] {
   const files = getAllPostFiles();
+  console.log(`[DEPLOY LOG] Found ${files.length} .mdx files in content/posts`);
   let posts = files
     .map(({ file, category }) => {
       const slug = path.basename(file, '.mdx');
@@ -49,9 +64,17 @@ export function getAllPosts(): PostMeta[] {
         image: data.image || '',
       };
     });
+  console.log('[DEPLOY LOG] Parsed posts:', posts.map(p => ({slug: p.slug, category: p.category, title: p.title})));
   const filterCategory = process.env.CATEGORY;
+  console.log('[DEPLOY LOG] filterCategory:', filterCategory);
   if (filterCategory) {
-    posts = posts.filter(post => post.category && post.category.toLowerCase() === filterCategory.toLowerCase());
+    posts = posts.filter(post =>
+      post.category &&
+      post.category.trim().toLowerCase() === filterCategory.trim().toLowerCase()
+    );
+    console.log(`[DEPLOY LOG] Filtering posts by category: ${filterCategory}. Remaining: ${posts.length}`);
+  } else {
+    console.log(`[DEPLOY LOG] No category filter. Returning all posts: ${posts.length}`);
   }
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
@@ -81,6 +104,7 @@ export function getPostBySlug(category: string, slug: string) {
       author: data.author || '',
       usepic: data.usepic || '',
       image: data.image || '',
+      scenarioId: data['Scenario ID'] || '',
     },
     content: contentWithoutTitle,
   };

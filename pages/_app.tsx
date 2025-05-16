@@ -66,26 +66,35 @@ function MyApp({ Component, pageProps }: AppProps) {
                 border: 'none',
                 transition: 'background 0.2s'
               }}>Login</a>
-              <a href="https://discord.gg/v8PB2Zkj" target="_blank" rel="noopener noreferrer" style={{
-                display: 'flex',
-                padding: '12px 24px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 8,
-                borderRadius: 100,
-                background: config.buttonColor,
-                color: config.buttonTextColor,
-                textAlign: 'center',
-                fontFeatureSettings: '"ss04" on',
-                fontSize: 16,
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: '24px',
-                fontFamily: 'Inter, sans-serif',
-                textDecoration: 'none',
-                boxShadow: '0 2px 8px 0 rgba(0,0,0,0.04)',
-                transition: 'background 0.2s'
-              }}>
+              <a
+                href={
+                  pageProps?.meta?.scenarioId && pageProps.meta.scenarioId.trim() !== ''
+                    ? `https://mystylus.ai/chat-agents?scenario=${encodeURIComponent(pageProps.meta.scenarioId)}`
+                    : 'https://mystylus.ai/chat-agents'
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  padding: '12px 24px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 8,
+                  borderRadius: 100,
+                  background: config.buttonColor,
+                  color: config.buttonTextColor,
+                  textAlign: 'center',
+                  fontFeatureSettings: '"ss04" on',
+                  fontSize: 16,
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: '24px',
+                  fontFamily: 'Inter, sans-serif',
+                  textDecoration: 'none',
+                  boxShadow: '0 2px 8px 0 rgba(0,0,0,0.04)',
+                  transition: 'background 0.2s'
+                }}
+              >
                 {config.tagline}
               </a>
             </div>

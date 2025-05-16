@@ -16,6 +16,7 @@ import { BackArrow } from '../../../icons/BackArrow';
 import { FaDiscord } from 'react-icons/fa';
 import remarkGfm from 'remark-gfm';
 import dynamic from 'next/dynamic';
+import MDXImage from '../../../components/MDXImage';
 
 // Import Lottie with dynamic loading to avoid SSR issues
 const Lottie = dynamic(() => import('lottie-react').then(mod => mod.default), { ssr: false });
@@ -253,7 +254,8 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
           <MDXRemote 
             {...mdxSource} 
             components={{
-              h1: () => null // Hide all h1s in the MDX content
+              h1: () => null,
+              img: MDXImage
             }}
           />
         </article>
@@ -452,7 +454,7 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
             marginBottom: 0,
             zIndex: 1,
           }}>
-            AI Agents Newsletter
+            AI that gets the job done
           </div>
           <div style={{ 
             color: '#000',
@@ -465,10 +467,18 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
             marginBottom: 16,
             zIndex: 1,
           }}>
-            Get the latest AI agent news in your inbox
+            Get early access to our AI-powered platform for smart content creation
           </div>
-          <button
+          <a
+            href={
+              meta?.scenarioId && meta.scenarioId.trim() !== ''
+                ? `https://mystylus.ai/chat-agents?scenario=${encodeURIComponent(meta.scenarioId)}`
+                : 'https://mystylus.ai/chat-agents'
+            }
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
+              display: 'inline-block',
               background: '#232323',
               color: '#FFF',
               border: 'none',
@@ -484,11 +494,11 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
               transition: 'background 0.2s',
               letterSpacing: '-0.5px',
               zIndex: 1,
+              textDecoration: 'none',
             }}
-            onClick={() => alert('Coming soon!')}
           >
-            Subscribe
-          </button>
+            Get Instant Help
+          </a>
         </div>
       )}
 
@@ -550,7 +560,7 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
               lineHeight: '42px',
               marginBottom: 0,
             }}>
-              Let AI Agents create your job!
+              AI that gets the job done
             </div>
             <div style={{ 
               color: '#000',
@@ -562,10 +572,18 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
               lineHeight: '24px',
               marginBottom: 24,
             }}>
-              Get early access to our AI-powered job creation platform.
+              Get early access to our AI-powered platform for smart content creation
             </div>
-            <button
+            <a
+              href={
+                meta?.scenarioId && meta.scenarioId.trim() !== ''
+                  ? `https://mystylus.ai/chat-agents?scenario=${encodeURIComponent(meta.scenarioId)}`
+                  : 'https://mystylus.ai/chat-agents'
+              }
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
+                display: 'inline-block',
                 background: '#232323',
                 color: '#FFF',
                 border: 'none',
@@ -581,11 +599,11 @@ export default function PostPage({ meta, mdxSource, headings }: { meta: PostMeta
                 cursor: 'pointer',
                 transition: 'background 0.2s',
                 letterSpacing: '-0.5px',
+                textDecoration: 'none',
               }}
-              onClick={() => alert('Coming soon!')}
             >
               Get Instant Help
-            </button>
+            </a>
             <button
               onClick={() => setCtaClosed(true)}
               style={{
