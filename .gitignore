@@ -7,3 +7,4 @@ out/
 .vercel
 scripts/
 dist/
+package-lock.json
