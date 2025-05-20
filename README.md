@@ -23,6 +23,16 @@ npm run dev:category
 # Then select a category from the list
 ```
 
+### Generating articles with LangChain and Airtable
+
+Use the generator to process the next Airtable record:
+
+```bash
+npm run generate:article
+```
+
+Progress for each record is written to `tools/progress/<recordId>.json` and the final post is saved under `content/posts/<category>/<slug>.mdx`.
+
 ## Deployment
 
 Each category is deployed as a separate website with its own branding.
